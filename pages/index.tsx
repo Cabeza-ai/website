@@ -738,7 +738,7 @@ export default function Home() {
             Let's explore what AI can do for your business.
           </CTASubtext>
           <CTAButton
-            href="https://form.typeform.com/to/fiwKkZoi"
+            href="https://cabeza.app.n8n.cloud/form/d755770d-d9dc-43d5-989a-a232930ee3e6"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.06 }}
