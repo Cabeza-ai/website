@@ -27,6 +27,7 @@ import {
   FaClock,
   FaDollarSign
 } from 'react-icons/fa';
+import Header from '../components/Header';
 
 // Global font styles
 const GlobalStyle = createGlobalStyle`
@@ -615,11 +616,24 @@ export default function Home() {
     <>
       <GlobalStyle />
       <Wrapper>
+        <Header />
         <Head>
           <title>Cabeza.ai - Elevating Intelligence with AI-First Solutions</title>
           <meta name="description" content="Transform your business with AI-first strategies. Cabeza.ai provides education, consultation, and automation solutions to help you think and work smarter." />
           <meta name="keywords" content="AI automation, business intelligence, AI education, workflow automation, artificial intelligence consulting" />
           <link rel="icon" href="/favicon.ico" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: 'window.chtlConfig = { chatbotId: "8733226775" }'
+            }}
+          />
+          <script
+            async
+            data-id="8733226775"
+            id="chtl-script"
+            type="text/javascript"
+            src="https://chatling.ai/js/embed.js"
+          />
         </Head>
 
         {/* Hero Section */}
@@ -730,7 +744,7 @@ export default function Home() {
         </Section> */}
 
         {/* Services Section */}
-        <Section>
+        <Section id="services">
           <SectionTitle>Our Services</SectionTitle>
           <SectionSubtitle>
             Comprehensive AI solutions designed to transform how you think and work
@@ -834,7 +848,7 @@ export default function Home() {
         </Section>
 
         {/* Process Section */}
-        <Section bg="#0f0f1a">
+        <Section bg="#0f0f1a" id="process">
           <SectionTitle>How We Work</SectionTitle>
           <SectionSubtitle>
             Our proven methodology ensures successful AI implementation and adoption
@@ -948,7 +962,7 @@ export default function Home() {
         */}
 
         {/* FAQ Section */}
-        <Section>
+        <Section id="faq">
           <SectionTitle>Frequently Asked Questions</SectionTitle>
           <SectionSubtitle>
             Everything you need to know about working with Cabeza.ai
