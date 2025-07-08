@@ -104,8 +104,6 @@ const Wrapper = styled.div`
   min-height: 100vh;
   color: #fff;
   position: relative;
-  width: 100vw;
-  overflow-x: hidden;
 `;
 
 const Section = styled.section<{ bg?: string; fullHeight?: boolean }>`
@@ -117,12 +115,6 @@ const Section = styled.section<{ bg?: string; fullHeight?: boolean }>`
   position: relative;
   min-height: ${({ fullHeight }) => fullHeight ? '100vh' : 'auto'};
   justify-content: ${({ fullHeight }) => fullHeight ? 'center' : 'flex-start'};
-  width: 100vw;
-  margin: 0;
-  box-sizing: border-box;
-  @media (max-width: 900px) {
-    padding: ${({ fullHeight }) => fullHeight ? '0' : '3rem 0.5rem 2.5rem 0.5rem'};
-  }
 `;
 
 // Enhanced Hero Components
@@ -210,7 +202,7 @@ const HeroCTA = styled(motion.a)`
 
 // Enhanced Section Components
 const SectionTitle = styled.h2`
-  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 800;
   margin-bottom: 1rem;
   text-align: center;
@@ -227,10 +219,6 @@ const SectionSubtitle = styled.p`
   max-width: 600px;
   margin-bottom: 3rem;
   line-height: 1.6;
-  @media (max-width: 600px) {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
 `;
 
 // Stats Section
@@ -266,15 +254,9 @@ const ServicesGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  width: 100vw;
+  width: 100%;
+  max-width: 1200px;
   margin-top: 2rem;
-  box-sizing: border-box;
-  padding: 0 2vw;
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-    padding: 0 1vw;
-  }
 `;
 
 const ServiceCard = styled(motion.div)`
@@ -366,15 +348,9 @@ const ProcessGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  width: 100vw;
+  width: 100%;
+  max-width: 1000px;
   margin-top: 2rem;
-  box-sizing: border-box;
-  padding: 0 2vw;
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-    padding: 0 1vw;
-  }
 `;
 
 const ProcessCard = styled(motion.div)`
@@ -436,10 +412,9 @@ const TestimonialsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  width: 100vw;
+  width: 100%;
+  max-width: 1200px;
   margin-top: 2rem;
-  box-sizing: border-box;
-  padding: 0 2vw;
 `;
 
 const TestimonialCard = styled(motion.div)`
@@ -522,38 +497,6 @@ const HeroIcon = styled(motion.div)<{ pos: string }>`
   
   @media (max-width: 600px) {
     font-size: 2.5rem;
-  }
-`;
-
-// Responsive grid for contact
-const ContactGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  width: 100vw;
-  margin-top: 2rem;
-  box-sizing: border-box;
-  padding: 0 2vw;
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0 1vw;
-  }
-`;
-
-// Responsive card for services/process/contact
-const Card = styled(motion.div)`
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%);
-  border-radius: 2rem;
-  padding: 3rem 2rem;
-  border: 1px solid rgba(120, 119, 198, 0.2);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  @media (max-width: 600px) {
-    padding: 2rem 1rem;
-    border-radius: 1rem;
   }
 `;
 
@@ -807,80 +750,102 @@ export default function Home() {
           <SectionSubtitle>
             Comprehensive AI solutions designed to transform how you think and work
           </SectionSubtitle>
-          <ServicesGrid 
-            initial="hidden"
+          <motion.div 
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%', maxWidth: '1200px', marginTop: '2rem' }}
+              initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
           >
             <motion.div 
+              style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%)', borderRadius: '2rem', padding: '3rem 2rem', border: '1px solid rgba(120, 119, 198, 0.2)', backdropFilter: 'blur(10px)', transition: 'all 0.3s ease' }}
               variants={fadeInUp}
               whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(120, 119, 198, 0.2)' }}
             >
-              <Card>
-                <ServiceIcon>
-                  <FaGraduationCap />
-                </ServiceIcon>
-                <ServiceTitle>
-                  AI Education & Training
-                </ServiceTitle>
-                <ServiceDesc>
-                  Comprehensive workshops and training programs to help your team develop AI-first thinking
-                </ServiceDesc>
-                <ServiceFeatures>
-                  <ServiceFeature>✓ Custom training programs</ServiceFeature>
-                  <ServiceFeature>✓ Hands-on workshops</ServiceFeature>
-                  <ServiceFeature>✓ Ongoing support & resources</ServiceFeature>
-                  <ServiceFeature>✓ Team certification</ServiceFeature>
-                </ServiceFeatures>
-              </Card>
+              <div style={{ width: '80px', height: '80px', background: 'linear-gradient(135deg, #7877c6, #ff77c6)', borderRadius: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '2rem', color: '#fff', boxShadow: '0 10px 30px rgba(120, 119, 198, 0.3)' }}>
+                <FaGraduationCap />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '1rem', textAlign: 'center', color: '#fff' }}>
+                AI Education & Training
+              </h3>
+              <p style={{ color: '#a8b2d1', textAlign: 'center', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                Comprehensive workshops and training programs to help your team develop AI-first thinking
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Custom training programs
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Hands-on workshops
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Ongoing support & resources
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Team certification
+                </li>
+              </ul>
             </motion.div>
 
             <motion.div 
+              style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%)', borderRadius: '2rem', padding: '3rem 2rem', border: '1px solid rgba(120, 119, 198, 0.2)', backdropFilter: 'blur(10px)', transition: 'all 0.3s ease' }}
               variants={fadeInUp}
               whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(120, 119, 198, 0.2)' }}
             >
-              <Card>
-                <ServiceIcon>
-                  <FaHandshake />
-                </ServiceIcon>
-                <ServiceTitle>
-                  Strategic Consultation
-                </ServiceTitle>
-                <ServiceDesc>
-                  Expert guidance to identify opportunities and create your AI transformation roadmap
-                </ServiceDesc>
-                <ServiceFeatures>
-                  <ServiceFeature>✓ Business process analysis</ServiceFeature>
-                  <ServiceFeature>✓ AI strategy development</ServiceFeature>
-                  <ServiceFeature>✓ ROI optimization</ServiceFeature>
-                  <ServiceFeature>✓ Implementation planning</ServiceFeature>
-                </ServiceFeatures>
-              </Card>
+              <div style={{ width: '80px', height: '80px', background: 'linear-gradient(135deg, #7877c6, #ff77c6)', borderRadius: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '2rem', color: '#fff', boxShadow: '0 10px 30px rgba(120, 119, 198, 0.3)' }}>
+                <FaHandshake />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '1rem', textAlign: 'center', color: '#fff' }}>
+                Strategic Consultation
+              </h3>
+              <p style={{ color: '#a8b2d1', textAlign: 'center', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                Expert guidance to identify opportunities and create your AI transformation roadmap
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Business process analysis
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> AI strategy development
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> ROI optimization
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Implementation planning
+                </li>
+              </ul>
             </motion.div>
 
             <motion.div 
+              style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%)', borderRadius: '2rem', padding: '3rem 2rem', border: '1px solid rgba(120, 119, 198, 0.2)', backdropFilter: 'blur(10px)', transition: 'all 0.3s ease' }}
               variants={fadeInUp}
               whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(120, 119, 198, 0.2)' }}
             >
-              <Card>
-                <ServiceIcon>
-                  <FaCode />
-                </ServiceIcon>
-                <ServiceTitle>
-                  Custom AI Automation
-                </ServiceTitle>
-                <ServiceDesc>
-                  Bespoke AI workflow development and integration for your specific business needs
-                </ServiceDesc>
-                <ServiceFeatures>
-                  <ServiceFeature>✓ Custom workflow design</ServiceFeature>
-                  <ServiceFeature>✓ API integration</ServiceFeature>
-                  <ServiceFeature>✓ Testing & deployment</ServiceFeature>
-                  <ServiceFeature>✓ Maintenance & updates</ServiceFeature>
-                </ServiceFeatures>
-              </Card>
+              <div style={{ width: '80px', height: '80px', background: 'linear-gradient(135deg, #7877c6, #ff77c6)', borderRadius: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '2rem', color: '#fff', boxShadow: '0 10px 30px rgba(120, 119, 198, 0.3)' }}>
+                <FaCode />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '1rem', textAlign: 'center', color: '#fff' }}>
+                Custom AI Automation
+              </h3>
+              <p style={{ color: '#a8b2d1', textAlign: 'center', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                Bespoke AI workflow development and integration for your specific business needs
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Custom workflow design
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> API integration
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Testing & deployment
+                </li>
+                <li style={{ color: '#8892b0', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ color: '#7877c6', fontWeight: 'bold' }}>✓</span> Maintenance & updates
+                </li>
+              </ul>
             </motion.div>
-          </ServicesGrid>
+          </motion.div>
         </Section>
 
         {/* Process Section */}
@@ -889,7 +854,8 @@ export default function Home() {
           <SectionSubtitle>
             Our proven methodology ensures successful AI implementation and adoption
           </SectionSubtitle>
-          <ProcessGrid 
+          <motion.div 
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', width: '100%', maxWidth: '1000px', marginTop: '2rem' }}
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
@@ -918,23 +884,22 @@ export default function Home() {
             ].map((process, index) => (
               <motion.div 
                 key={index} 
+                style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(15, 52, 96, 0.6) 100%)', borderRadius: '2rem', padding: '2.5rem 2rem', textAlign: 'center', border: '1px solid rgba(120, 119, 198, 0.2)', position: 'relative', overflow: 'hidden' }}
                 variants={fadeInUp}
                 whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(120, 119, 198, 0.2)' }}
               >
-                <ProcessCard>
-                  <ProcessStep>
-                    {process.step}
-                  </ProcessStep>
-                  <ProcessTitle>
-                    {process.title}
-                  </ProcessTitle>
-                  <ProcessDesc>
-                    {process.desc}
-                  </ProcessDesc>
-                </ProcessCard>
+                <div style={{ width: '60px', height: '60px', background: 'linear-gradient(135deg, #7877c6, #ff77c6)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.5rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 10px 30px rgba(120, 119, 198, 0.3)' }}>
+                  {process.step}
+                </div>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '1rem', color: '#fff' }}>
+                  {process.title}
+                </h3>
+                <p style={{ color: '#a8b2d1', fontSize: '1rem', lineHeight: '1.6' }}>
+                  {process.desc}
+                </p>
               </motion.div>
             ))}
-          </ProcessGrid>
+          </motion.div>
         </Section>
 
         {/* Testimonials Section - Commented out
@@ -1004,7 +969,7 @@ export default function Home() {
             Everything you need to know about working with Cabeza.ai
           </SectionSubtitle>
           <motion.div 
-            style={{ maxWidth: '800px', width: '100vw', marginTop: '2rem', boxSizing: 'border-box', padding: '0 2vw' }}
+            style={{ maxWidth: '800px', width: '100%', marginTop: '2rem' }}
             variants={staggerContainer}
           >
             {faqData.map((faq, i) => {
@@ -1136,22 +1101,23 @@ export default function Home() {
           <SectionSubtitle>
             Let's discuss how AI can elevate your operations and drive growth
           </SectionSubtitle>
-          <ContactGrid 
+          <motion.div 
+            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', width: '100%', maxWidth: '1000px', marginTop: '2rem' }}
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
           >
             <motion.div 
+              style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%)', borderRadius: '2rem', padding: '3rem 2rem', border: '1px solid rgba(120, 119, 198, 0.2)' }}
               variants={fadeInUp}
             >
-              <Card>
-                <h3 style={{ color: '#fff', marginBottom: '1.5rem' }}>Get in Touch</h3>
-                <p style={{ color: '#a8b2d1', marginBottom: '2rem', lineHeight: '1.6' }}>
-                  Ready to start your AI transformation? We're here to help you navigate the journey 
-                  and achieve real results. Book a free consultation to explore possibilities.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <motion.a
+              <h3 style={{ color: '#fff', marginBottom: '1.5rem' }}>Get in Touch</h3>
+              <p style={{ color: '#a8b2d1', marginBottom: '2rem', lineHeight: '1.6' }}>
+                Ready to start your AI transformation? We're here to help you navigate the journey 
+                and achieve real results. Book a free consultation to explore possibilities.
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <motion.a
             href="https://cabeza.app.n8n.cloud/form/d755770d-d9dc-43d5-989a-a232930ee3e6"
             target="_blank"
             rel="noopener noreferrer"
@@ -1172,41 +1138,39 @@ export default function Home() {
                   📅 Book 30-Min Call
                 </motion.a>
               </div>
-            </Card>
             </motion.div>
 
             <motion.div 
+              style={{ background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%)', borderRadius: '2rem', padding: '3rem 2rem', border: '1px solid rgba(120, 119, 198, 0.2)' }}
               variants={fadeInUp}
             >
-              <Card>
-                <h3 style={{ color: '#fff', marginBottom: '1.5rem' }}>Quick Contact</h3>
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', marginTop: '2rem', flexWrap: 'wrap' }}>
-                  <a
-                    href="mailto:cabeza.ai.info@gmail.com"
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', fontWeight: '500', color: '#a8b2d1', textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '1rem', transition: 'all 0.3s ease' }}
-                  >
-                    <FaEnvelope /> cabeza.ai.info@gmail.com
-                  </a>
-                  <a
-                    href="https://linkedin.com/company/cabeza-ai"
+              <h3 style={{ color: '#fff', marginBottom: '1.5rem' }}>Quick Contact</h3>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', marginTop: '2rem', flexWrap: 'wrap' }}>
+                <a
+                  href="mailto:cabeza.ai.info@gmail.com"
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', fontWeight: '500', color: '#a8b2d1', textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '1rem', transition: 'all 0.3s ease' }}
+                >
+                  <FaEnvelope /> cabeza.ai.info@gmail.com
+                </a>
+                <a
+                  href="https://linkedin.com/company/cabeza-ai"
             target="_blank"
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', fontWeight: '500', color: '#a8b2d1', textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '1rem', transition: 'all 0.3s ease' }}
-                  >
-                    <FaLinkedin /> LinkedIn
-                  </a>
-                </div>
-                <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(120, 119, 198, 0.1)', borderRadius: '1rem' }}>
-                  <h4 style={{ color: '#fff', marginBottom: '1rem' }}>Why Choose Cabeza.ai?</h4>
-                  <ul style={{ color: '#a8b2d1', lineHeight: '1.6' }}>
-                    <li>✓ Proven track record with 50+ companies</li>
-                    <li>✓ Custom solutions, not one-size-fits-all</li>
-                    <li>✓ Ongoing support and optimization</li>
-                    <li>✓ Focus on education and adoption</li>
-                  </ul>
-                </div>
-              </Card>
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', fontWeight: '500', color: '#a8b2d1', textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '1rem', transition: 'all 0.3s ease' }}
+                >
+                  <FaLinkedin /> LinkedIn
+                </a>
+              </div>
+              <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(120, 119, 198, 0.1)', borderRadius: '1rem' }}>
+                <h4 style={{ color: '#fff', marginBottom: '1rem' }}>Why Choose Cabeza.ai?</h4>
+                <ul style={{ color: '#a8b2d1', lineHeight: '1.6' }}>
+                  <li>✓ Proven track record with 50+ companies</li>
+                  <li>✓ Custom solutions, not one-size-fits-all</li>
+                  <li>✓ Ongoing support and optimization</li>
+                  <li>✓ Focus on education and adoption</li>
+                </ul>
+              </div>
             </motion.div>
-          </ContactGrid>
+          </motion.div>
         </Section>
 
         <Footer>
