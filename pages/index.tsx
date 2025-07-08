@@ -117,12 +117,11 @@ const Section = styled.section<{ bg?: string; fullHeight?: boolean }>`
   position: relative;
   min-height: ${({ fullHeight }) => fullHeight ? '100vh' : 'auto'};
   justify-content: ${({ fullHeight }) => fullHeight ? 'center' : 'flex-start'};
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100vw;
+  margin: 0;
+  box-sizing: border-box;
   @media (max-width: 900px) {
     padding: ${({ fullHeight }) => fullHeight ? '0' : '3rem 0.5rem 2.5rem 0.5rem'};
-    max-width: 100vw;
   }
 `;
 
@@ -267,12 +266,14 @@ const ServicesGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  width: 100%;
-  max-width: 1200px;
+  width: 100vw;
   margin-top: 2rem;
+  box-sizing: border-box;
+  padding: 0 2vw;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 1.2rem;
+    padding: 0 1vw;
   }
 `;
 
@@ -365,12 +366,14 @@ const ProcessGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  width: 100%;
-  max-width: 1000px;
+  width: 100vw;
   margin-top: 2rem;
+  box-sizing: border-box;
+  padding: 0 2vw;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 1.2rem;
+    padding: 0 1vw;
   }
 `;
 
@@ -433,9 +436,10 @@ const TestimonialsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  width: 100%;
-  max-width: 1200px;
+  width: 100vw;
   margin-top: 2rem;
+  box-sizing: border-box;
+  padding: 0 2vw;
 `;
 
 const TestimonialCard = styled(motion.div)`
@@ -526,12 +530,14 @@ const ContactGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  width: 100%;
-  max-width: 1000px;
+  width: 100vw;
   margin-top: 2rem;
+  box-sizing: border-box;
+  padding: 0 2vw;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0 1vw;
   }
 `;
 
@@ -998,7 +1004,7 @@ export default function Home() {
             Everything you need to know about working with Cabeza.ai
           </SectionSubtitle>
           <motion.div 
-            style={{ maxWidth: '800px', width: '100%', marginTop: '2rem' }}
+            style={{ maxWidth: '800px', width: '100vw', marginTop: '2rem', boxSizing: 'border-box', padding: '0 2vw' }}
             variants={staggerContainer}
           >
             {faqData.map((faq, i) => {
