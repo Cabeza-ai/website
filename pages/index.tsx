@@ -31,9 +31,6 @@ import Header from '../components/Header';
 
 // Global font styles
 const GlobalStyle = createGlobalStyle`
-  html {
-    scroll-behavior: smooth;
-  }
   body {
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 400;
@@ -518,6 +515,19 @@ const staggerContainer = {
   }
 };
 
+const ContactGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 2rem;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllFAQs, setShowAllFAQs] = useState(false);
@@ -623,7 +633,6 @@ export default function Home() {
         <Header />
         <Head>
           <title>Cabeza.ai - Elevating Intelligence with AI-First Solutions</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content="Transform your business with AI-first strategies. Cabeza.ai provides education, consultation, and automation solutions to help you think and work smarter." />
           <meta name="keywords" content="AI automation, business intelligence, AI education, workflow automation, artificial intelligence consulting" />
           <link rel="icon" href="/favicon.ico" />
@@ -755,15 +764,8 @@ export default function Home() {
             Comprehensive AI solutions designed to transform how you think and work
           </SectionSubtitle>
           <motion.div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
-              width: '100%',
-              maxWidth: '1200px',
-              marginTop: '2rem',
-            }}
-            initial="hidden"
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%', maxWidth: '1200px', marginTop: '2rem' }}
+              initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
           >
@@ -866,14 +868,7 @@ export default function Home() {
             Our proven methodology ensures successful AI implementation and adoption
           </SectionSubtitle>
           <motion.div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '2rem',
-              width: '100%',
-              maxWidth: '1000px',
-              marginTop: '2rem',
-            }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', width: '100%', maxWidth: '1000px', marginTop: '2rem' }}
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
@@ -1119,15 +1114,7 @@ export default function Home() {
           <SectionSubtitle>
             Let's discuss how AI can elevate your operations and drive growth
           </SectionSubtitle>
-          <motion.div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '3rem',
-              width: '100%',
-              maxWidth: '1000px',
-              marginTop: '2rem',
-            }}
+          <ContactGrid
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
@@ -1195,7 +1182,7 @@ export default function Home() {
                 </ul>
               </div>
             </motion.div>
-          </motion.div>
+          </ContactGrid>
         </Section>
 
         <Footer>
